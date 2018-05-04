@@ -6,7 +6,7 @@ pipeline {
             steps {
                 bat "echo This is Build"
                 script {
-                    currentBuild.result = 'FAILURE'
+                    currentBuild.result = 'SUCCESS'
                 }
             }
         }
