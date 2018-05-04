@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 bat "echo This is Build"
+                currentBuild.result = 'FAILURE'
             }
         }
         stage('Test') {
@@ -19,7 +20,7 @@ pipeline {
                 }
             }
             steps {
-                bat "echo This is Deploy"
+                bat "echo This is Experimental"
             }
         }
         stage('Deploy') {
