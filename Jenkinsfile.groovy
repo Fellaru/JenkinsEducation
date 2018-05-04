@@ -12,6 +12,11 @@ pipeline {
                 bat "echo This is Test"
             }
         }
+        stage('Experimental') {
+            steps {
+                bat "echo This is Deploy"
+            }
+        }
         stage('Deploy') {
             steps {
                 bat "echo This is Deploy"
