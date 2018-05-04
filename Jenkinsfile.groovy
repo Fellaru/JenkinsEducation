@@ -13,6 +13,12 @@ pipeline {
             }
         }
         stage('Experimental') {
+            when {
+                expression {
+                  //  currentBuild.result == null || currentBuild.result == 'SUCCESS'
+                    return false
+                }
+            }
             steps {
                 bat "echo This is Deploy"
             }
