@@ -1,11 +1,13 @@
 #!groovy
 pipeline {
+    environment{
+        currentBuild.result = 'FAILURE'
+    }
     agent any
     stages {
         stage('Build') {
             steps {
                 bat "echo This is Build"
-                currentBuild.result = 'FAILURE'
             }
         }
         stage('Test') {
