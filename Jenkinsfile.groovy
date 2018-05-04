@@ -15,8 +15,7 @@ pipeline {
         stage('Experimental') {
             when {
                 expression {
-                  //  currentBuild.result == null || currentBuild.result == 'SUCCESS'
-                    return false
+                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
                 }
             }
             steps {
