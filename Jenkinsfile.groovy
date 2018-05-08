@@ -23,18 +23,12 @@ pipeline {
         }
         stage('Experimental') {
             steps {
-                bat 'echo "FOO is %FOO%"'
-                // returns 'FOO is BAR'
+                writeFile text: 'hello world', file: 'msg.out'
+                step([$class: 'ArtifactArchiver', artifacts: 'msg.out', fingerprint: true])
 
-                bat 'echo "BUILD_NUM_ENV is %BUILD_NUM_ENV%"'
-                // returns 'BUILD_NUM_ENV is 4' depending on the build number
-
-                bat 'echo "ANOTHER_ENV is %ANOTHER_ENV%"'
-                // returns 'ANOTHER_ENV is 4' like the previous depending on the build number
-
-                bat 'echo "INHERITED_ENV is %INHERITED_ENV%"'
-                // returns 'INHERITED_ENV is ${BUILD_NUM_ENV} is inherited'
-                // The \ escapes the $ so the variable is not expanded but becomes a literal
+                // Parentheses are optional when a single parameter is used
+                sh('echo $PATH')
+                sh 'echo $PATH'
             }
         }
         stage('Deploy') {
