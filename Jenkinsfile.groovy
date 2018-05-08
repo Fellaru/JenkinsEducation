@@ -6,7 +6,6 @@ pipeline {
         BUILD_NUM_ENV = currentBuild.getNumber()
         ANOTHER_ENV = "${currentBuild.getNumber()}"
         INHERITED_ENV = "\${BUILD_NUM_ENV} is inherited"
-        ACME_FUNC = readMavenPom().getArtifactId()
     }
     stages {
         stage('Build') {
@@ -36,9 +35,6 @@ pipeline {
                 bat 'echo "INHERITED_ENV is $INHERITED_ENV"'
                 // returns 'INHERITED_ENV is ${BUILD_NUM_ENV} is inherited'
                 // The \ escapes the $ so the variable is not expanded but becomes a literal
-
-                bat 'echo "ACME_FUNC is $ACME_FUNC"'
-                // returns 'ACME_FUNC is spring-petclinic' or the name of the artifact in the pom.xml
             }
         }
         stage('Deploy') {
