@@ -23,12 +23,8 @@ pipeline {
         }
         stage('Experimental') {
             steps {
-                writeFile text: 'hello world', file: 'msg.out'
-                step([$class: 'ArtifactArchiver', artifacts: 'msg.out', fingerprint: true])
-
-                // Parentheses are optional when a single parameter is used
-                sh('echo $PATH')
-                sh 'echo $PATH'
+                writeFile text: 'hello world', file: 'msg.txt'
+                step([$class: 'Mailer', recipients: 'efischenko@cinimex.ru'])
             }
         }
         stage('Deploy') {
