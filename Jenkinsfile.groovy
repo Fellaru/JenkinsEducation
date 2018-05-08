@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Experimental') {
             steps {
-                bat 'echo "FOO is $FOO"'
+                bat 'echo "FOO is ${FOO}"'
                 // returns 'FOO is BAR'
 
                 bat 'echo "BUILD_NUM_ENV is $BUILD_NUM_ENV"'
